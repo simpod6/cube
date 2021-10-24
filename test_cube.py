@@ -44,7 +44,7 @@ class TestBlock(TestCase):
         block.setFace("L", "W")
         block.setFace("D", "O")
         faces = block.getFaces()
-        self.assertEqual(faces, "RWxxOx")
+        self.assertEqual(faces, "RW..O.")
     
     def test_block_set_face_all(self):
         block = Block()
@@ -132,8 +132,128 @@ class TestCube(TestCase):
     
     def test_cube3(self):
         cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        self.assertEqual(cube.getCube(), SAMPLE_CUBE_2)
+    
+    def test_cube_rotate_U(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)        
+        cube.rotate("U")        
+        self.assertEqual(cube.getCube(), "GDA"\
+                                         "HEB"\
+                                         "IFC"\
+                                      "MNOPQR21z"\
+                                      "STUVWXYZa"\
+                                      "bcdefghij"\
+                                         "klm"\
+                                         "nop"\
+                                         "qrs"\
+                                         "tuv"\
+                                         "wxy"\
+                                         "LKJ")
+    
+    def test_cube_rotate_check(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)        
+        cube.print("R")
+        cube.rotate("R")        
+        cube.print("R")
+        '''
+        self.assertEqual(cube.getCube(), "RRR"\
+                                         "RRR"\
+                                         "RRR"\
+                                      "GGGYYYBBB"\
+                                      "WWWGGGYYY"\
+                                      "WWWGGGYYY"\
+                                         "OOO"\
+                                         "OOO"\
+                                         "OOO"\
+                                         "WWW"\
+                                         "BBB"\
+                                         "BBB")
+        '''
+    def test_cube_rotate_Ui(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("Ui")        
+        self.assertEqual(cube.getCube(), "CFI"\
+                                         "BEH"\
+                                         "ADG"\
+                                      "21zJKLMNO"\
+                                      "STUVWXYZa"\
+                                      "bcdefghij"\
+                                         "klm"\
+                                         "nop"\
+                                         "qrs"\
+                                         "tuv"\
+                                         "wxy"\
+                                         "RQP")
+    
+    def test_cube_rotate_R(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("R")        
+        self.assertEqual(cube.getCube(), "ABO"\
+                                         "DEX"\
+                                         "GHg"\
+                                      "JKLMNmhYP"\
+                                      "STUVWpiZQ"\
+                                      "bcdefsjaR"\
+                                         "klv"\
+                                         "noy"\
+                                         "qr2"\
+                                         "tuC"\
+                                         "wxF"\
+                                         "z1I")
+    
+    def test_cube_rotate_Ri(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("Ri")        
+        self.assertEqual(cube.getCube(), "ABv"\
+                                         "DEy"\
+                                         "GH2"\
+                                      "JKLMNCRaj"\
+                                      "STUVWFQZi"\
+                                      "bcdefIPYh"\
+                                         "klO"\
+                                         "noX"\
+                                         "qrg"\
+                                         "tum"\
+                                         "wxp"\
+                                         "z1s")
+        
+    def test_cube_rotate_L(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("L")        
+        self.assertEqual(cube.getCube(), "tBC"\
+                                         "wEF"\
+                                         "zHI"\
+                                      "bSJANOPQR"\
+                                      "cTKDWXYZa"\
+                                      "dULGfghij"\
+                                         "Mlm"\
+                                         "Vop"\
+                                         "ers"\
+                                         "kuv"\
+                                         "nxy"\
+                                         "q12")
+        
+    def test_cube_rotate_Li(self):
+        cube = Cube()
         cube.initialize(SAMPLE_CUBE)
-        self.assertEqual(cube.getCube(), SAMPLE_CUBE)
-        
-        
+        cube.rotate("Li")        
+        self.assertEqual(cube.getCube(), "GRR"\
+                                         "GRR"\
+                                         "GRR"\
+                                      "WWWOGGYYY"\
+                                      "WWWOGGYYY"\
+                                      "WWWOGGYYY"\
+                                         "BOO"\
+                                         "BOO"\
+                                         "BOO"\
+                                         "RBB"\
+                                         "RBB"\
+                                         "RBB")        
     
