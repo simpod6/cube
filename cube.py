@@ -217,20 +217,42 @@ class Cube(object):
             for y in range(3):
                 for x in range(3):
                     face[x][y] = copy.deepcopy(self.blocks[y][0][x])
+                        
             if len(movement) == 1:
                 face = list(zip(*face))[::-1]
                 for x in range(3):
                     for y in range(3):                                            
-                        face[x][x].rotate('b')
+                        face[x][y].rotate('F')
             elif movement[1] == 'i':
                 face = list(zip(*face[::-1]))
                 for x in range(3):
                     for y in range(3):
                         face[x][y].rotate('B')
-                        
+                                    
             for y in range(3):
                 for x in range(3):
                     self.blocks[y][0][x] = copy.deepcopy(face[x][y])
+        
+        if movement[0] == 'F':
+            face = [ [Block() for _ in range(3)] for _ in range(3)]
+            for y in range(3):
+                for x in range(3):
+                    face[x][y] = copy.deepcopy(self.blocks[y][x][2])
+                        
+            if len(movement) == 1:
+                face = list(zip(*face))[::-1]
+                for x in range(3):
+                    for y in range(3):                                            
+                        face[x][y].rotate('R')
+            elif movement[1] == 'i':
+                face = list(zip(*face[::-1]))
+                for x in range(3):
+                    for y in range(3):
+                        face[x][y].rotate('L')
+                                    
+            for y in range(3):
+                for x in range(3):
+                    self.blocks[y][x][2] = copy.deepcopy(face[x][y])        
            
         '''
             self.blocks[0] = list(zip(*self.blocks[0]))[::-1]

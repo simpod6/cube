@@ -256,4 +256,38 @@ class TestCube(TestCase):
                                          "RBB"\
                                          "RBB"\
                                          "RBB")        
+        
+    def test_cube_rotate_F(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("F")        
+        self.assertEqual(cube.getCube(), "ABC"\
+                                         "DEF"\
+                                         "dUL"\
+                                      "JKkeVMGQR"\
+                                      "STlfWNHZa"\
+                                      "bcmgXOIij"\
+                                         "hYP"\
+                                         "nop"\
+                                         "qrs"\
+                                         "tuv"\
+                                         "wxy"\
+                                         "z12")
+    
+    def test_cube_rotate_Fi(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("Fi")        
+        self.assertEqual(cube.getCube(), "ABC"\
+                                         "DEF"\
+                                         "PYh"\
+                                      "JKIOXgmQR"\
+                                      "STHNWflZa"\
+                                      "bcGMVekij"\
+                                         "LUd"\
+                                         "nop"\
+                                         "qrs"\
+                                         "tuv"\
+                                         "wxy"\
+                                         "z12")
     
