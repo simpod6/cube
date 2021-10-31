@@ -151,27 +151,7 @@ class TestCube(TestCase):
                                          "tuv"\
                                          "wxy"\
                                          "LKJ")
-    
-    def test_cube_rotate_check(self):
-        cube = Cube()
-        cube.initialize(SAMPLE_CUBE_2)        
-        cube.print("R")
-        cube.rotate("R")        
-        cube.print("R")
-        '''
-        self.assertEqual(cube.getCube(), "RRR"\
-                                         "RRR"\
-                                         "RRR"\
-                                      "GGGYYYBBB"\
-                                      "WWWGGGYYY"\
-                                      "WWWGGGYYY"\
-                                         "OOO"\
-                                         "OOO"\
-                                         "OOO"\
-                                         "WWW"\
-                                         "BBB"\
-                                         "BBB")
-        '''
+        
     def test_cube_rotate_Ui(self):
         cube = Cube()
         cube.initialize(SAMPLE_CUBE_2)
@@ -290,4 +270,71 @@ class TestCube(TestCase):
                                          "tuv"\
                                          "wxy"\
                                          "z12")
+        
+    def test_cube_rotate_B(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("B")        
+        self.assertEqual(cube.getCube(), "Raj"\
+                                         "DEF"\
+                                         "GHI"\
+                                      "CKLMNOPQs"\
+                                      "BTUVWXYZr"\
+                                      "Acdefghiq"\
+                                         "klm"\
+                                         "nop"\
+                                         "JSb"\
+                                         "zwt"\
+                                         "1xu"\
+                                         "2yv")
     
+    def test_cube_rotate_Bi(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("Bi")        
+        self.assertEqual(cube.getCube(), "bSJ"\
+                                         "DEF"\
+                                         "GHI"\
+                                      "qKLMNOPQA"\
+                                      "rTUVWXYZB"\
+                                      "scdefghiC"\
+                                         "klm"\
+                                         "nop"\
+                                         "jaR"\
+                                         "vy2"\
+                                         "ux1"\
+                                         "twz")
+    
+    def test_cube_rotate_D(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("D")        
+        self.assertEqual(cube.getCube(), "ABC"\
+                                         "DEF"\
+                                         "GHI"\
+                                      "JKLMNOPQR"\
+                                      "STUVWXYZa"\
+                                      "vutbcdefg"\
+                                         "qnk"\
+                                         "rol"\
+                                         "spm"\
+                                         "jih"\
+                                         "wxy"\
+                                         "z12")
+    
+    def test_cube_rotate_Di(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.rotate("Di")        
+        self.assertEqual(cube.getCube(), "ABC"\
+                                         "DEF"\
+                                         "GHI"\
+                                      "JKLMNOPQR"\
+                                      "STUVWXYZa"\
+                                      "efghijvut"\
+                                         "mps"\
+                                         "lor"\
+                                         "knq"\
+                                         "dcb"\
+                                         "wxy"\
+                                         "z12")

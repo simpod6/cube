@@ -159,15 +159,7 @@ class Cube(object):
             for y in range(3):
                 for x in range(3):
                     face[x][y] = copy.deepcopy(self.blocks[0][x][y])            
-            '''         
-            faceStr = ""
-            for y in range(3):
-                for x in range(3):
-                    faceStr += face[x][y].getFace("U")
-            print(faceStr[0:3])
-            print(faceStr[3:6])
-            print(faceStr[6:9])            
-            '''
+
             if len(movement) == 1:
                 face = list(zip(*face))[::-1]
                 for x in range(3):
@@ -178,17 +170,7 @@ class Cube(object):
                 for x in range(3):
                     for y in range(3):
                         face[x][y].rotate('A')
-            
-            '''          
-            faceStr = ""
-            for y in range(3):
-                for x in range(3):
-                    faceStr += face[x][y].getFace("U")
-            print(faceStr[0:3])
-            print(faceStr[3:6])
-            print(faceStr[6:9])            
-            '''
-                       
+
             for y in range(3):
                 for x in range(3):
                     self.blocks[0][x][y] = copy.deepcopy(face[x][y])
@@ -253,24 +235,49 @@ class Cube(object):
             for y in range(3):
                 for x in range(3):
                     self.blocks[y][x][2] = copy.deepcopy(face[x][y])        
-           
-        '''
-            self.blocks[0] = list(zip(*self.blocks[0]))[::-1]
-            for x in range(3):
-                for y in range(3):                    
-                    self.blocks[0][x][y].rotate('C')
-                    
-            
-        if movement == 'Ui':
-            self.blocks[0] = list(zip(*self.blocks[0][::-1]))
-            for x in range(3):
-                for y in range(3):
-                    self.blocks[0][x][y].rotate('A')
-                    '''
-    
         
+        if movement[0] == 'B':
+            face = [ [Block() for _ in range(3)] for _ in range(3)]
+            for y in range(3):
+                for x in range(3):
+                    face[x][y] = copy.deepcopy(self.blocks[y][2-x][0])
+                        
+            if len(movement) == 1:
+                face = list(zip(*face))[::-1]
+                for x in range(3):
+                    for y in range(3):                                            
+                        face[x][y].rotate('L')
+            elif movement[1] == 'i':
+                face = list(zip(*face[::-1]))
+                for x in range(3):
+                    for y in range(3):
+                        face[x][y].rotate('R')
+                                    
+            for y in range(3):
+                for x in range(3):
+                    self.blocks[y][2-x][0] = copy.deepcopy(face[x][y])        
             
-    
+        if movement[0] == 'D':
+            face = [ [Block() for _ in range(3)] for _ in range(3)]
+            for y in range(3):
+                for x in range(3):
+                    face[x][y] = copy.deepcopy(self.blocks[2][x][2-y])
+            
+            if len(movement) == 1:
+                face = list(zip(*face))[::-1]
+                for x in range(3):
+                    for y in range(3):                                            
+                        face[x][y].rotate('A')
+            elif movement[1] == 'i':
+                face = list(zip(*face[::-1]))
+                for x in range(3):
+                    for y in range(3):
+                        face[x][y].rotate('C')
+                                   
+            for y in range(3):
+                for x in range(3):
+                    self.blocks[2][x][2-y] = copy.deepcopy(face[x][y])
+
     
     
 def main():
