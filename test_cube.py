@@ -1,5 +1,6 @@
 from unittest import TestCase
 from cube import Block, Cube
+import time
 
 SAMPLE_CUBE = "RRR"\
               "RRR"\
@@ -338,3 +339,41 @@ class TestCube(TestCase):
                                          "dcb"\
                                          "wxy"\
                                          "z12")
+
+    def test_cube_sequence_1(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.sequence("UUi")        
+        self.assertEqual(cube.getCube(), SAMPLE_CUBE_2)
+    
+    def test_cube_sequence_2(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.sequence("RRRR")        
+        self.assertEqual(cube.getCube(), SAMPLE_CUBE_2)
+    
+    def test_cube_sequence_3(self):
+        cube1 = Cube()
+        cube1.initialize(SAMPLE_CUBE_2)
+        cube1.sequence("FFF")
+        cube2 = Cube()
+        cube2.initialize(SAMPLE_CUBE_2)
+        cube2.sequence("Fi")                
+        self.assertEqual(cube1.getCube(), cube2.getCube())
+        
+    def test_cube_sequence_4(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.sequence("UFUURLiRLDBDiBFRiDiL")
+        cube.sequence("LiDRFiBiDBiDiLiRiLRiUiUiFiUi")
+        self.assertEqual(cube.getCube(), SAMPLE_CUBE_2)
+    
+    def test_cube_sequence_5(self):
+        cube = Cube()
+        cube.initialize(SAMPLE_CUBE_2)
+        cube.sequence("BBDBBUFFRRUUFFUURiDBRRFDDFRDiL")
+        tic = time.perf_counter()
+        cube.sequence("LiDRiFiDDFiRRBiDiRUUFFUURRFFUiBBDiBB")
+        toc = time.perf_counter()
+        self.assertEqual(cube.getCube(), SAMPLE_CUBE_2)
+        print(f"Time taken: {toc-tic}ms")

@@ -1,5 +1,18 @@
 import copy
+import time
 
+SAMPLE_CUBE_2 = "ABC"\
+                "DEF"\
+                "GHI"\
+             "JKLMNOPQR"\
+             "STUVWXYZa"\
+             "bcdefghij"\
+                "klm"\
+                "nop"\
+                "qrs"\
+                "tuv"\
+                "wxy"\
+                "z12"
 
 class Block(object):    
     faces = ["" for _ in range(6)]
@@ -36,20 +49,6 @@ class Block(object):
         elif direction == 'A':            
             self.faces[1], self.faces[2], self.faces[3], self.faces[5] = self.faces[5], self.faces[1], self.faces[2], self.faces[3]
         
-        
-SAMPLE_CUBE = "RRR"\
-              "RRR"\
-              "RRR"\
-           "WWWGGGYYY"\
-           "WWWGGGYYY"\
-           "WWWGGGYYY"\
-              "OOO"\
-              "OOO"\
-              "OOO"\
-              "BBB"\
-              "BBB"\
-              "BBB"
-
 class Cube(object):        
     blocks = [ [ [Block() for _ in range(3)] for _ in range(3)] for _ in range(3)]
     def __init__(self):
@@ -277,12 +276,43 @@ class Cube(object):
             for y in range(3):
                 for x in range(3):
                     self.blocks[2][x][2-y] = copy.deepcopy(face[x][y])
+                    
+    def sequence(self, movements):
+        previousChar = ''
+        for char in movements:            
+            if char == 'i':
+                self.rotate(previousChar + 'i')
+                previousChar = ''
+            else:
+                if previousChar != '':
+                    self.rotate(previousChar)
+                previousChar = char
+        
+        if previousChar != '':
+            self.rotate(previousChar)
+        
+                
+
 
     
     
 def main():
-    mycube = Cube()
-    mycube.initialize("")        
+    cube = Cube()
+    totalTime = 0
+    totalRuns = 100
+    
+    Start = time.perf_counter()
+    for i in range (totalRuns):    
+        cube.initialize(SAMPLE_CUBE_2)        
+        cube.sequence("BBDBBUFFRRUUFFUURiDBRRFDDFRDiL")
+        tic = time.perf_counter()
+        cube.sequence("LiDRiFiDDFiRRBiDiRUUFFUURRFFUiBBDiBB")
+        toc = time.perf_counter()    
+        totalTime += toc - tic
+    avgTime = totalTime / totalRuns
+    print(f"Total time taken: {totalTime}s")    
+    print(f"Average time taken: {avgTime}s")
+    print(f"Sequences per second: {1 / avgTime}")
 
 if __name__ == "__main__":
     main()
